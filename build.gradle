@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'info.solidsoft.pitest' version '1.5.2'
 }
 
 group 'com.vikytech'
@@ -17,11 +18,24 @@ dependencies {
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.2')
 }
 
+
 test {
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
+    finalizedBy jacocoTestReport, 'pitest'
 }
 
 jacocoTestReport {
     dependsOn test
+}
+
+pitest {
+    testSourceSets.set([sourceSets.test])
+    mainSourceSets.set([sourceSets.main])
+    junit5PluginVersion = '0.12'
+    outputFormats = ['HTML'] // XML is also available
+    mutators = ["ROR", "RETURN_VALS", "INVERT_NEGS", "MATH", "NON_VOID_METHOD_CALLS"]
+    avoidCallsTo = ["java.util", "java.lang"]
+    // optional
+    threads = 4
+    timestampedReports = false
 }

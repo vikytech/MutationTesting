@@ -3,62 +3,57 @@ package com.vikytech;
 import java.util.HashMap;
 import java.util.Map;
 
-final class RomanConverter {
+import static java.lang.String.format;
 
-    private static final Map<Character, Integer> romanSymbols = new HashMap<Character, Integer>() {
-        private static final long serialVersionUID = 1L;
-        {
-            put('I', 1);
-            put('V', 5);
-            put('X', 10);
-            put('L', 50);
-            put('C', 100);
-            put('D', 500);
-            put('M', 1000);
-        }
-    };
+public class RomanConverter {
 
-    private RomanConverter() {
+  private static final Map<Character, Integer> romanSymbols = new HashMap<Character, Integer>() {
+    private static final long serialVersionUID = 1L;
+
+    {
+      put('I', 1);
+      put('V', 5);
+      put('X', 10);
+      put('L', 50);
+      put('C', 100);
+      put('D', 500);
+      put('M', 1000);
     }
+  };
 
-    static int convertRomanToArabicNumber(String roman) {
+  int convertRomanToArabicNumber(String roman) {
+    roman = roman.toUpperCase();
 
-        roman = roman.toUpperCase();
+    int sum = 0;
+    int current;
+    int previous = 0;
 
-        int sum = 0;
-        int current = 0;
-        int previous = 0;
+    int index = roman.length() - 1;
+    while (index >= 0) {
 
-        for (int index = roman.length() - 1; index >= 0; index--) {
-            if (doesSymbolsContainsRomanCharacter(roman, index)) {
+      try {
+        current = getSymbolValue(roman, index);
+      } catch (NullPointerException e) {
+        throw new IllegalArgumentException(
+          format("Invalid roman character %s ", getCharValue(roman, index)));
+      }
 
-                current = getSymbolValue(roman, index);
-
-                if (current < previous) {
-                    sum -= current;
-                } else {
-                    sum += current;
-                }
-
-                previous = current;
-
-            } else {
-                throw new IllegalArgumentException(
-                  String.format("Invalid roman character %s ", getCharValue(roman, index)));
-            }
-        }
-        return sum;
+      if (current < previous) {
+        sum -= current;
+      } else {
+        sum += current;
+      }
+      previous = current;
+      index--;
     }
+    return sum;
+  }
 
-    private static boolean doesSymbolsContainsRomanCharacter(String roman, int index) {
-        return romanSymbols.containsKey(getCharValue(roman, index));
-    }
+  private Integer getSymbolValue(String roman, int index) {
+    return romanSymbols.get(getCharValue(roman, index));
+  }
 
-    private static Integer getSymbolValue(String roman, int index) {
-        return romanSymbols.get(getCharValue(roman, index));
-    }
-
-    private static char getCharValue(String roman, int index) {
-        return roman.charAt(index);
-    }
+  private char getCharValue(String roman, int index) {
+    return roman.charAt(index);
+  }
 }
