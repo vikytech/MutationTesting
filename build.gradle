@@ -33,7 +33,7 @@ pitest {
     mainSourceSets.set([sourceSets.main])
     junit5PluginVersion = '0.12'
     outputFormats = ['HTML'] // XML is also available
-    mutators = ["ROR", "RETURN_VALS", "INVERT_NEGS", "MATH", "NON_VOID_METHOD_CALLS"]
+    mutators = ["ROR", "RETURN_VALS", "INVERT_NEGS", "MATH", "VOID_METHOD_CALLS", "NON_VOID_METHOD_CALLS"]
     avoidCallsTo = ["java.util", "java.lang"]
     // optional
     threads = 4
