@@ -94,4 +94,15 @@ class RomanConverterTest {
       () -> romanConvertor.convertRomanToArabicNumber("Z"),
       "Invalid roman character Z Should throw (IllegalArgumentException)");
   }
+
+  @Test
+  void validateSumWithValidValue() {
+    assertEquals(25, romanConvertor.validateSum(25),
+      "Should return the same value sent in Parameter");
+  }
+
+  @Test
+  void validateSumWithZero() {
+    romanConvertor.validateSum(0);
+  }
 }

@@ -46,6 +46,14 @@ public class RomanConverter {
       previous = current;
       index--;
     }
+
+    return validateSum(sum);
+  }
+
+  int validateSum(int sum) {
+    if (sum <= 0)
+      return -1;
+
     return sum;
   }
 
