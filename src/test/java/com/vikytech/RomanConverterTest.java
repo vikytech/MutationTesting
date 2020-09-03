@@ -103,6 +103,13 @@ class RomanConverterTest {
 
   @Test
   void validateSumWithZero() {
-    romanConvertor.validateSum(0);
+    assertEquals(-1, romanConvertor.validateSum(0),
+      "Should return -1 when the value is zero");
+  }
+
+  @Test
+  void validateSumWithNegativeNumber() {
+    assertEquals(-1, romanConvertor.validateSum(-25),
+      "Should return -1 when the value is less than zero");
   }
 }
