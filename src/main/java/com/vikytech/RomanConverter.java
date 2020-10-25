@@ -8,8 +8,6 @@ import static java.lang.String.format;
 public class RomanConverter {
 
   private static final Map<Character, Integer> romanSymbols = new HashMap<Character, Integer>() {
-    private static final long serialVersionUID = 1L;
-
     {
       put('I', 1);
       put('V', 5);
@@ -21,7 +19,7 @@ public class RomanConverter {
     }
   };
 
-  int convertRomanToArabicNumber(String roman) {
+  public Integer convertRomanToArabicNumber(String roman) {
     roman = roman.toUpperCase();
 
     int sum = 0;
@@ -50,7 +48,7 @@ public class RomanConverter {
     return validateSum(sum);
   }
 
-  int validateSum(int sum) {
+  public Integer validateSum(int sum) {
     if (sum <= 0)
       return -1;
 
