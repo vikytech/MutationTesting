@@ -1,3 +1,5 @@
+[![Watch the video](https://user-images.githubusercontent.com/3875111/116968161-900f5b80-acd1-11eb-93b0-ef9d12aa4826.png)](https://www.youtube.com/watch?v=nTTp8c1C8jA)
+
 # What is Mutation testing
 
 Mutation testing (or mutation analysis or program mutation) is used to design new software tests and evaluate the quality of existing software tests.
