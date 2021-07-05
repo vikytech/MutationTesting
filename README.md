@@ -169,4 +169,4 @@ org.pitest.mutationtest.commandline.MutationCoverageReport \
 
 
 
-#### NOTE: All the above documentation tested on Pitest-1.5.2
+#### NOTE: All the above documentation tested on Pitest-1.6.7
