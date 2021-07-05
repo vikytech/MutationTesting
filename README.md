@@ -29,14 +29,19 @@ id 'info.solidsoft.pitest' version '1.5.2'
 Create pitest task with your needed configuration
 ```
 pitest {
-    testSourceSets.set([sourceSets.test])
-    mainSourceSets.set([sourceSets.main])
-    junit5PluginVersion = '0.12'
-    outputFormats = ['HTML'] // XML is also available
-    mutators = ["ROR", "RETURN_VALS", "INVERT_NEGS", "MATH", "VOID_METHOD_CALLS", "NON_VOID_METHOD_CALLS"]
-    avoidCallsTo = ["java.util", "java.lang"]
-    threads = 4
-    timestampedReports = false
+    mainSourceSets.set([sourceSets.main]) // Only for individual contribution, not recommended for repo having more than 10-15 classes
+    testSourceSets.set([sourceSets.test]) // Only for individual contribution, not recommended for repo having more than 10-15 classes
+    targetClasses.set(["com.foo.*","com.bar.*"]) // Ignore if mainSourceSets & testSourceSets is specified
+    excludedClasses.set(["com.foo1.*","com.bar.IT*"])  // Ignore if mainSourceSets & testSourceSets is specified
+    pitestVersion.set('1.6.7') // Not needed if you want to use the default version provided by plugin
+    junit5PluginVersion.set('0.14')
+    outputFormats.set(['HTML']) // XML is also available
+    mutators.set(["ROR", "RETURN_VALS", "INVERT_NEGS", "MATH", "VOID_METHOD_CALLS", "NON_VOID_METHOD_CALLS"])
+    avoidCallsTo.set(["java.util", "java.lang"])
+    threads.set(4)
+    timestampedReports.set(false)
+    mutationThreshold.set(95)
+    coverageThreshold.set(95)
 }
 ```
 
